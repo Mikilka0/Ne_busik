@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ne_Busik</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="hero-container">
+      <!-- Навігація -->
+      <header class="navbar">
+        <div class="logo"><span class="logo-icon">❈</span> Ne_Busik</div>
+        <nav class="nav-links">
+          <a href="index.html" class="active">Головна</a>
+          <a href="catalog.html">Нові Бусіки</a>
+          <a href="thanks.html">Донат</a>
+        </nav>
+      </header>
+
+      <!-- Головний екран -->
+      <main class="hero-content">
+        <!-- Ліва частина видалена, оскільки фото тепер буде фоном -->
+
+        <!-- Права частина (Контент та Слайдер залишаються) -->
+        <div class="hero-right">
+          <h1 class="main-heading">Транспорт,<br />Який Визначає Тебе</h1>
+
+          <!-- Індикатор слайдера -->
+          <div class="slider-progress">
+            <span class="current">01</span>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <span class="total">04</span>
+          </div>
+
+          <!-- Картки -->
+          <div class="carousel">
+            <!-- Перша (активна) картка -->
+            <div class="glass-card">
+              <img
+                src="images/mercedes-benz-v-class.jpg"
+                alt="Luxury Busik"
+                class="card-img"
+              />
+              <div class="card-info">
+                <h3>Тривалий Люксовий Бусік</h3>
+                <p>
+                  Відкрийте для себе розкішні поїздки для кожної несподіваної
+                  подорожі.
+                </p>
+                <a href="thanks.html" class="btn-primary">Забронювати</a>
+              </div>
+            </div>
+
+            <!-- Наступна картка (частково видно) -->
+            <div class="glass-card partial">
+              <img
+                src="images/renault_trafic_2.jpg"
+                alt="Classic Busik"
+                class="card-img"
+              />
+            </div>
+          </div>
+
+          <!-- Управління слайдером -->
+          <div class="slider-controls">
+            <button class="ghost-btn glass-element arrow">←</button>
+            <button class="btn-primary arrow">→</button>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

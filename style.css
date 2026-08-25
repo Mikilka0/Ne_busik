@@ -1,0 +1,579 @@
+:root {
+  --bg-color: #2c2d30;
+  --text-light: #ffffff;
+  --text-muted: #9e9e9e;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Mariupol", "Inter", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-light);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Займає всю висоту екрану */
+  padding: 24px 48px;
+  box-sizing: border-box;
+
+  /* Магія затемнення та фону */
+  background:
+    linear-gradient(
+      rgba(30, 30, 32, 0.7),
+      /* Верхній темний шар (прозорість 70%) */ rgba(30, 30, 32, 0.7)
+        /* Нижній темний шар */
+    ),
+    url(images/zelya_7.jpg) center center / cover no-repeat;
+}
+
+/* --- Навігація --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  margin: 0 16px;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+.nav-links a.active,
+.nav-links a:hover {
+  color: var(--text-light);
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Універсальний клас для матового скла (пошук, іконки, картки) */
+.glass-element {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.search-bar {
+  border-radius: 30px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+}
+.search-bar input {
+  background: none;
+  border: none;
+  color: white;
+  outline: none;
+  margin-left: 8px;
+}
+
+.ghost-btn {
+  color: white;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Головна секція --- */
+.hero-content {
+  display: flex;
+  flex: 1;
+  margin-top: 20px;
+  justify-content: flex-end; /* Зсуває контент (текст і картки) вправо */
+  align-items: center; /* Центрує контент по вертикалі */
+}
+
+.hero-left {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+.main-chair {
+  max-width: 90%;
+  z-index: 2;
+  margin-bottom: 50px;
+}
+
+.hero-right {
+  max-width: 650px; /* Або будь-яка інша ширина, яка тобі подобається */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-heading {
+  font-size: 4rem; /* Зменшено з 4.5rem */
+  font-weight: 500;
+  line-height: 1.1;
+  margin-bottom: 20px; /* Зменшено з 40px */
+}
+
+/* Слайдер Прогрес */
+.slider-progress {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px; /* Зменшено з 30px */
+  font-weight: 600;
+}
+.progress-bar {
+  width: 200px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+}
+.progress-fill {
+  width: 25%;
+  height: 100%;
+  background: white;
+}
+
+/* Картки */
+.carousel {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px; /* Зменшено відступ до кнопок */
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  gap: 20px; /* Зменшили простір між фото і текстом */
+  width: 440px; /* Зробили картку трохи компактнішою */
+  height: 200px; /* Зменшили висоту картки з 240px */
+  box-sizing: border-box;
+  align-items: stretch;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.glass-card.partial {
+  width: 140px;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+  padding: 0;
+}
+
+/* Зображення */
+.card-img {
+  width: 180px; /* Зробили трохи ширшим, щоб авто мало кращий вигляд */
+  height: 100%;
+  object-fit: contain; /* Автомобіль поміститься повністю, без обрізки бамперів */
+  background-color: #ffffff; /* Зливається із вшитим фоном JPG-файлу */
+  border-radius: 0;
+  flex-shrink: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* ДОДАНО: Для частково видимої картки фото має займати всю її ширину */
+.glass-card.partial .card-img {
+  width: 100%;
+}
+
+/* Текстовий блок */
+.card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 16px 16px 0; /* Зменшили відступи, щоб текст мав більше місця */
+  gap: 10px; /* Зменшили відстань між заголовком, текстом та кнопкою */
+}
+
+.card-info h3,
+.card-info p {
+  margin: 0;
+}
+
+/* Кнопка в картці */
+.btn-primary {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #e0e0e0;
+}
+.slider-controls {
+  display: flex;
+  gap: 12px;
+}
+.arrow {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+}
+
+/* --- СТИЛІ ДЛЯ СТОРІНКИ КАТАЛОГУ --- */
+
+/* --- СТИЛІ КАТАЛОГУ (OLX STYLE) --- */
+body.catalog-page {
+  overflow-y: auto;
+  background:
+    linear-gradient(rgba(30, 30, 32, 0.7), rgba(30, 30, 32, 0.7)),
+    url(images/zelya_7.jpg) center top / cover fixed no-repeat;
+}
+
+.catalog-page .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 48px;
+  background: linear-gradient(to bottom, rgba(30, 30, 32, 0.95), transparent);
+}
+
+.catalog-list-wrapper {
+  padding: 120px 48px 60px;
+  max-width: 1000px; /* Ширина як у блоку оголошень */
+  margin: 0 auto;
+}
+
+.catalog-title {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.catalog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Невелика відстань між оголошеннями */
+}
+
+/* Сама картка оголошення */
+.list-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px; /* На OLX кути не дуже круглі */
+  overflow: hidden;
+  display: flex;
+  flex-direction: row; /* ФОТО ЗЛІВА, ТЕКСТ СПРАВА */
+  width: 100%;
+  min-height: 200px;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background 0.2s ease;
+}
+
+.list-card:hover {
+  background: rgba(255, 255, 255, 0.08); /* Легка підсвітка при наведенні */
+}
+
+/* Блок з фотографією */
+.list-img-wrapper {
+  width: 260px; /* Фіксована ширина для фото */
+  flex-shrink: 0;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Блок з контентом */
+.list-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Розпихає хедер вгору, футер вниз */
+  padding: 20px 24px;
+  flex-grow: 1; /* Займає всю ширину, що залишилася */
+}
+
+.list-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.title-group h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #ccc;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-left: 16px;
+}
+
+.description {
+  margin: 16px 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+  flex-grow: 1; /* Якщо тексту мало, він відштовхне футер вниз */
+}
+
+/* Підвал картки (Локація і кнопки) */
+.list-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.location {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.list-card-footer .actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Корекція кнопки сердечка для каталогу */
+.list-card-footer .ghost-btn {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.list-card-footer .ghost-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- СТОРІНКА ПОДЯКИ ТА ДОНАТУ --- */
+body.thanks-page {
+  background:
+    linear-gradient(rgba(30, 30, 32, 0.8), rgba(30, 30, 32, 0.85)),
+    url(images/zelya_7.jpg) center center / cover fixed no-repeat;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden; /* Забороняємо скрол, сторінка має бути як візитка */
+}
+
+/* Відступи хедера на сторінці подяки */
+.thanks-page .navbar {
+  padding: 24px 48px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Піксельний грід (сітка) поверх фону */
+.pixel-grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 30px 30px; /* Розмір клітинок сітки */
+  z-index: 1;
+  pointer-events: none; /* Щоб сітка не блокувала кліки мишкою */
+}
+
+/* Контейнер для центрування картки */
+.thanks-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2; /* Контент знаходиться над сіткою */
+  padding: 24px;
+}
+
+/* Специфічні налаштування для картки подяки */
+.thanks-card {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  height: auto; /* Дозволяємо картці розтягуватись під текст */
+  padding: 48px;
+  gap: 20px;
+}
+
+.thanks-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.thanks-text {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.donate-actions {
+  margin-top: 24px;
+  width: 100%;
+}
+
+/* Модифікація основної кнопки під лінку */
+.donate-btn {
+  display: block; /* Робимо посилання блоком на всю ширину */
+  text-align: center;
+  text-decoration: none; /* Прибираємо підкреслення тексту */
+  width: 100%;
+  padding: 16px 0;
+  font-size: 1.1rem;
+  box-sizing: border-box;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.2s ease;
+}
+
+.donate-btn:hover {
+  transform: translateY(-4px); /* Кнопка трохи "підстрибує" */
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================= */
+/* --- МОБІЛЬНА АДАПТАЦІЯ (Екрани < 768px) --- */
+/* ========================================= */
+@media (max-width: 768px) {
+  /* ДОДАНО: Вмикаємо можливість скролу для мобілок, якщо контент не влазить */
+  body,
+  html {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .hero-container {
+    height: auto;
+    min-height: 100vh;
+    padding: 16px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 0;
+  }
+  .catalog-page .navbar,
+  .thanks-page .navbar {
+    padding: 16px;
+  }
+  .nav-links a {
+    margin: 0 10px;
+    font-size: 13px;
+  }
+
+  .hero-content {
+    justify-content: center;
+  }
+  .hero-right {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  .main-heading {
+    font-size: 2.5rem; /* Ще трохи зменшили заголовок, щоб зекономити місце */
+    margin-bottom: 24px;
+    margin-top: 16px;
+  }
+  .carousel {
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* --- ОНОВЛЕНА КАРТКА --- */
+  .glass-card {
+    flex-direction: column;
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    padding: 0; /* Обнуляємо, щоб фотографія була чітко від краю до краю */
+  }
+  .card-img {
+    width: 100%;
+    height: 180px; /* Зробили фото трохи нижчим */
+  }
+  .card-info {
+    padding: 20px; /* Додали рівномірні відступи з усіх боків для тексту і кнопки */
+    align-items: center;
+    gap: 16px;
+  }
+  .btn-primary {
+    align-self: center;
+    width: 100%; /* Розтягнули кнопку для зручного натискання пальцем */
+    text-align: center;
+  }
+  .glass-card.partial {
+    display: none;
+  }
+
+  /* ... далі залишай стилі для каталогу та подяки без змін ... */
+}
