@@ -229,6 +229,7 @@ html {
 }
 
 /* Кнопка в картці */
+/* Кнопка в картці */
 .btn-primary {
   background: #ffffff;
   color: #000000;
@@ -240,6 +241,11 @@ html {
   cursor: pointer;
   align-self: flex-start;
   transition: background 0.2s ease;
+
+  /* ДОДАНО: Щоб тег <a> поводився як кнопка і не вилазив за краї */
+  display: block;
+  box-sizing: border-box;
+  text-decoration: none;
 }
 
 .btn-primary:hover {
@@ -497,6 +503,79 @@ body.thanks-page {
 .donate-btn:hover {
   transform: translateY(-4px); /* Кнопка трохи "підстрибує" */
   box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* --- СТОРІНКА ВОДІЇВ --- */
+.drivers-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Автоматична сітка */
+  gap: 24px;
+  width: 100%;
+}
+/* Оновлений клас картки водія (додано .drivers-grid для вищого пріоритету) */
+.drivers-grid .driver-card {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 32px 24px 16px; /* Зменшили нижній відступ картки до 16px */
+  height: 100%; /* Гарантує, що всі картки в сітці тягнуться однаково */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.driver-card .btn-primary {
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  margin-top: auto; /* Штовхає кнопку в самий низ */
+  margin-bottom: 16px; /* ДОДАНО: Перенесли решту відступу сюди, щоб кнопка точно не обрізалась */
+}
+.driver-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%; /* Робить фото круглим */
+  object-fit: cover;
+  margin-bottom: 16px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+.driver-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.4rem;
+}
+
+.driver-card .description {
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  min-height: 40px; /* Вирівнює картки, якщо опис різної довжини */
+}
+
+/* Характеристики водія */
+.driver-stats {
+  width: 100%;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-bottom: 4px;
+}
+
+.driver-card .btn-primary {
+  width: 100%;
+  text-align: center;
+  text-decoration: none; /* Прибираємо підкреслення тексту посилання */
+  margin-top: auto; /* Магія Flexbox: автоматично відштовхує кнопку в самий низ картки */
 }
 
 /* ========================================= */
